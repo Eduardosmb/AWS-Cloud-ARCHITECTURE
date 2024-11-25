@@ -2,6 +2,7 @@
 
 # Diagrama da Arquitetura
 
+![Diagrama](diagrama.png)
 
 
 
