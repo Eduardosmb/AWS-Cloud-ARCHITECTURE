@@ -49,3 +49,39 @@ cat evidencias.txt
 > **Nota**: O relatório é atualizado automaticamente para refletir o estado atual do sistema.
 
 
+## Monitoramento com Zabbix
+
+## 🎯 Visão Geral
+Solução de monitoramento centralizado que fornece visibilidade em tempo real da infraestrutura. Monitora métricas críticas dos servidores através de agentes instalados nas instâncias.
+
+## 📋 Arquitetura
+- Zabbix Server centralizado (instância pública)
+- Agentes instalados nas instâncias:
+ - Backend (público)
+ - Database (privado)
+
+## 🛡️ Segurança Implementada
+### Regras de Firewall
+- Comunicação restrita entre Zabbix Server e agentes
+- Portas específicas para monitoramento (10050)
+- Acesso controlado por IP de origem
+
+## 📊 Monitoramento
+### Métricas Coletadas
+- Performance do sistema
+- Utilização de recursos
+- Estado dos serviços
+- Logs do sistema
+
+### Grupos de Monitoramento
+- Linux Servers: Métricas base do sistema
+- Databases: Métricas específicas de banco
+
+## 🔄 Alta Disponibilidade
+- Inicialização automática dos agentes
+- Recuperação pós-reinicialização
+- Persistência das configurações
+
+> **Nota**: Sistema configurado para monitoramento passivo, onde o Zabbix Server inicia as conexões com os agentes.
+
+
