@@ -4,6 +4,10 @@
 
 ![Diagrama](diagrama.png)
 
+
+[Youtube Video](https://www.youtube.com/watch?v=BLX6GrUMj8c)
+
+
 # Jump Server
 
 ## 🎯 Visão Geral
