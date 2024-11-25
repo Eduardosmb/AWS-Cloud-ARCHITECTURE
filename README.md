@@ -47,7 +47,6 @@ O sistema gera automaticamente relatórios de evidências no arquivo `evidencias
 O relatório de evidências pode ser acessado através do seguinte comando dentro da máquina do jump server:
 
 ```bash
-# Visualização completa do relatório
 cat evidencias.txt
 ```
 
