@@ -44,12 +44,15 @@ O sistema gera automaticamente relatórios de evidências no arquivo `evidencias
 - Registros de acesso
 - Configurações de segurança ativas
 
-O relatório de evidências pode ser acessado através dos seguintes comandos:
+O relatório de evidências pode ser acessado através do seguinte comando dentro da máquina do jump server:
 
 ```bash
 # Visualização completa do relatório
 cat evidencias.txt
 ```
+
+Caso não deseje entrar dentro da máquina, há uma cópia de um dos relatórios gerados nesse repositório. Basta abrir o arquivo com nome ```"evidencias_jump_server.txt"```.
+
 > **Nota**: O relatório é atualizado automaticamente para refletir o estado atual do sistema.
 
 
