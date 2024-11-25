@@ -1,0 +1,83 @@
+=== RELATÓRIO DE EVIDÊNCIAS DO JUMP SERVER ===
+Data e hora: Mon Nov 25 01:15:25 UTC 2024
+Hostname: ip-10-0-4-77
+
+=== 1. CONFIGURAÇÃO 2FA ===
+auth required pam_google_authenticator.so
+Últimas autenticações 2FA:
+2024-11-25T00:54:15.617087+00:00 ip-10-0-4-77 sshd(pam_google_authenticator)[1813]: Accepted google_authenticator for ubuntu
+2024-11-25T00:57:36.474617+00:00 ip-10-0-4-77 sshd(pam_google_authenticator)[1834]: Accepted google_authenticator for ubuntu
+2024-11-25T01:01:58.560473+00:00 ip-10-0-4-77 sshd(pam_google_authenticator)[1858]: Accepted google_authenticator for ubuntu
+2024-11-25T01:03:58.923567+00:00 ip-10-0-4-77 sshd(pam_google_authenticator)[1940]: Invalid verification code for ubuntu
+2024-11-25T01:04:38.858625+00:00 ip-10-0-4-77 sshd(pam_google_authenticator)[1941]: Accepted google_authenticator for ubuntu
+
+=== 2. GRUPOS E PERMISSÕES ===
+Grupos configurados:
+jumpserver-admins:x:1001:ubuntu
+jumpserver-users:x:1002:
+Membros dos grupos:
+ubuntu : ubuntu adm cdrom sudo dip lxd jumpserver-admins
+
+=== 3. LOGS E AUDITORIA ===
+Últimos logs de autenticação:
+2024-11-25T01:13:13.308246+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=0)
+2024-11-25T01:13:13.310945+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session closed for user root
+2024-11-25T01:13:13.318134+00:00 ip-10-0-4-77 sudo:     root : TTY=pts/1 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/sbin/ufw status verbose
+2024-11-25T01:13:13.320461+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=0)
+2024-11-25T01:13:13.392968+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session closed for user root
+2024-11-25T01:13:13.430639+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session closed for user root
+2024-11-25T01:15:01.897707+00:00 ip-10-0-4-77 CRON[3041]: pam_unix(cron:session): session opened for user root(uid=0) by root(uid=0)
+2024-11-25T01:15:01.900924+00:00 ip-10-0-4-77 CRON[3041]: pam_unix(cron:session): session closed for user root
+2024-11-25T01:15:25.182414+00:00 ip-10-0-4-77 sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=./gerar_evidencias.sh
+2024-11-25T01:15:25.185362+00:00 ip-10-0-4-77 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by ubuntu(uid=1000)
+Status do Auditd:
+● auditd.service - Security Auditing Service
+     Loaded: loaded (/usr/lib/systemd/system/auditd.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2024-11-25 01:10:00 UTC; 5min ago
+       Docs: man:auditd(8)
+             https://github.com/linux-audit/audit-documentation
+    Process: 2935 ExecStart=/sbin/auditd (code=exited, status=0/SUCCESS)
+    Process: 2941 ExecStartPost=/sbin/augenrules --load (code=exited, status=0/SUCCESS)
+   Main PID: 2937 (auditd)
+      Tasks: 2 (limit: 2338)
+     Memory: 508.0K (peak: 2.0M)
+        CPU: 28ms
+     CGroup: /system.slice/auditd.service
+             └─2937 /sbin/auditd
+
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: enabled 1
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: failure 1
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: pid 2937
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: rate_limit 0
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: backlog_limit 8192
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: lost 0
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: backlog 0
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: backlog_wait_time 60000
+Nov 25 01:10:00 ip-10-0-4-77 augenrules[2954]: backlog_wait_time_actual 0
+Nov 25 01:10:00 ip-10-0-4-77 systemd[1]: Started auditd.service - Security Auditing Service.
+Regras de Auditoria:
+-w /var/log/auth.log -p wa -k jump_server_access
+-w /etc/ssh/sshd_config -p wa -k sshd_config
+
+=== 4. FIREWALL ===
+Configuração do UFW:
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                  
+22/tcp (v6)                ALLOW IN    Anywhere (v6)             
+
+
+=== 5. STATUS DOS SERVIÇOS ===
+Status of ssh:
+     Active: active (running) since Mon 2024-11-25 01:09:41 UTC; 5min ago
+Status of ufw:
+     Active: active (exited) since Mon 2024-11-25 00:25:55 UTC; 49min ago
+Status of auditd:
+     Active: active (running) since Mon 2024-11-25 01:10:00 UTC; 5min ago
+Status of rsyslog:
+     Active: active (running) since Mon 2024-11-25 01:08:59 UTC; 6min ago
